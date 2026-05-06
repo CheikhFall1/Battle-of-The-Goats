@@ -1,82 +1,93 @@
-/* Declare variables below to save the different sections (divs) of your story*/
+const title = document.querySelector(".title");
+    sound: true,
+    choices: [
+      { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
+      { text: "Play Again", next: "start", reset: true }
+    ]
+  },
 
-let title = document.querySelector(".title")
-let storyOpening = document.querySelector(".story-opening")
-let buttons = document.querySelector(".buttons")
-let optionOneScreen = document.querySelector(".option-one-screen")
-let optionTwoScreen = document.querySelector(".option-two-screen")
-let optionOneEnd = document.querySelector(".option-one-end")
-let optionTwoEnd = document.querySelector(".option-two-end")
-let optionOneButton = document.querySelector(".option-one")
-let optionTwoButton = document.querySelector(".option-two")
-let optionKickButton = document.querySelector(".option-kick")
-let optionShootButton = document.querySelector(".option-shoot")
+  messiCorner: {
+    title: "Perfect Placement",
+    image: "laliga.webp",
+    text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it.",
+    sound: true,
+    choices: [
+      { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
+      { text: "Play Again", next: "start", reset: true }
+    ]
+  },
 
-/*
-How to change screens
-1.) Get your button variable and the screen variable
-ex: button variable is optionOneButton, screen is storyOpening
-2.) Get the screen variable that you want to appear depending on the button clicked
-ex: I want optionOneButton to go to optionOneScreen
-3.) In the onclick function of the button, set display none to current screen, and set display block to desired screen
-*/
+  messiChip: {
+    title: "Risky Choice",
+    image: "miss.webp",
+    text: "Messi tries to chip the keeper, but the keeper stays still and catches it. The crowd is shocked.",
+    choices: [
+      { text: "Final GOAT Verdict", next: "badEnding", points: 0 },
+      { text: "Try Again", next: "start", reset: true }
+    ]
+  },
 
-optionOneButton.onclick = function() {
-  storyOpening.style.display = "none"
-  optionOneScreen.style.display = "block"
-}
+  goatEnding: {
+    title: "Legend Status Unlocked",
+    image: "cele7.jpg",
+    text: "You made the right calls under pressure. Your player leaves the stadium with legacy points and bragging rights.",
+    sound: true,
+    choices: [
+      { text: "Restart Game", next: "start", reset: true }
+    ]
+  },
 
-optionKickButton.onclick = function() {
-  optionOneScreen.style.display = "none"
-  optionOneEnd.style.display = "block"
-}
-optionTwoButton.onclick = function() {
-  storyOpening.style.display = "none"
-  optionTwoScreen.style.display = "block"
-}
-optionShootButton.onclick = function () {
-  optionTwoScreen.style.display = "none"
-  optionTwoEnd.style.display = "block"
-}
-optionOneScreen.style.display = "none"
-
-optionTwoScreen.style.display = "none"
-
-optionOneEnd.style.display = "none"
-
-optionTwoEnd.style.display = "none"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* When you're ready to make event handlers, uncomment the code below. Then fill in the blanks with the correct variables!
-INSERT_VARIABLE.onclick=function(){
-
+  badEnding: {
+    title: "Pressure Got Too Real",
+    image: "miss.webp",
+    text: "The moment was too big. The internet is already making edits. Sometimes the GOAT debate gets painful.",
+    choices: [
+      { text: "Run It Back", next: "start", reset: true }
+    ]
+  }
 };
 
-INSERT_VARIABLE.onclick=function(){
+function showScene(sceneName) {
+  const scene = scenes[sceneName];
 
-};
+  if (!scene) {
+    console.error("Scene not found:", sceneName);
+    return;
+  }
 
+  title.textContent = scene.title;
+  sceneImage.src = scene.image;
+  storyText.textContent = scene.text;
+  scoreText.textContent = `Legacy Points: ${score}`;
+  roundText.textContent = `Round ${round}`;
 
-INSERT_VARIABLE.onclick=function(){
+  choices.innerHTML = "";
 
-};
+  if (scene.sound) {
+    celebrationSound.currentTime = 0;
+    celebrationSound.play().catch(() => {
+      console.log("Audio will play after user interaction.");
+    });
+  }
 
-*/
+  scene.choices.forEach(choice => {
+    const button = document.createElement("button");
+    button.textContent = choice.text;
+
+    button.onclick = function () {
+      if (choice.reset) {
+        score = 0;
+        round = 1;
+      } else {
+        score += choice.points || 0;
+        round += 1;
+      }
+
+      showScene(choice.next);
+    };
+
+    choices.appendChild(button);
+  });
+}
+
+showScene("start");
