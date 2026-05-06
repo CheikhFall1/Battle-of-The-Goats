@@ -1,4 +1,60 @@
 const title = document.querySelector(".title");
+const sceneImage = document.querySelector("#sceneImage");
+const storyText = document.querySelector("#storyText");
+const choices = document.querySelector("#choices");
+const scoreText = document.querySelector("#scoreText");
+const roundText = document.querySelector("#roundText");
+const celebrationSound = document.querySelector("#celebrationSound");
+
+let score = 0;
+let round = 1;
+
+const scenes = {
+  start: {
+    title: "Battle of The GOATs",
+    image: "mr.webp",
+    text: "The stadium is packed. The lights are bright. Two legends are ready for the final moment. Who are you choosing?",
+    choices: [
+      { text: "Pick Ronaldo", next: "ronaldoSetup", points: 1 },
+      { text: "Pick Messi", next: "messiSetup", points: 1 }
+    ]
+  },
+
+  ronaldoSetup: {
+    title: "Ronaldo Steps Up",
+    image: "stance.jpg",
+    text: "Ronaldo places the ball down. The keeper is talking trash. The crowd is loud. What should Ronaldo do?",
+    choices: [
+      { text: "Power Shot", next: "ronaldoPower", points: 2 },
+      { text: "Calm Penalty", next: "ronaldoCalm", points: 1 }
+    ]
+  },
+
+  messiSetup: {
+    title: "Messi Steps Up",
+    image: "messipen.jpg",
+    text: "Messi walks up slowly. The keeper is trying to guess the corner. What should Messi do?",
+    choices: [
+      { text: "Place It Bottom Corner", next: "messiCorner", points: 2 },
+      { text: "Chip the Keeper", next: "messiChip", points: 1 }
+    ]
+  },
+
+  ronaldoPower: {
+    title: "GOALLL!",
+    image: "cele7.jpg",
+    text: "Ronaldo smashes it into the top corner. The keeper does not even move. The stadium goes crazy.",
+    sound: true,
+    choices: [
+      { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
+      { text: "Play Again", next: "start", reset: true }
+    ]
+  },
+
+  ronaldoCalm: {
+    title: "Cold Finish",
+    image: "goal.jpg",
+    text: "Ronaldo waits for the keeper to move, then calmly sends it the other way. That was pure confidence.",
     sound: true,
     choices: [
       { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
@@ -50,11 +106,6 @@ const title = document.querySelector(".title");
 function showScene(sceneName) {
   const scene = scenes[sceneName];
 
-  if (!scene) {
-    console.error("Scene not found:", sceneName);
-    return;
-  }
-
   title.textContent = scene.title;
   sceneImage.src = scene.image;
   storyText.textContent = scene.text;
@@ -65,9 +116,7 @@ function showScene(sceneName) {
 
   if (scene.sound) {
     celebrationSound.currentTime = 0;
-    celebrationSound.play().catch(() => {
-      console.log("Audio will play after user interaction.");
-    });
+    celebrationSound.play().catch(() => {});
   }
 
   scene.choices.forEach(choice => {
