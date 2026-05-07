@@ -13,14 +13,26 @@ const gameContainer = document.querySelector(".game");
 
 const scenes = {
   start: {
-    title: "Battle of The GOATs",
-    image: "mr.webp",
-    text: "The stadium is packed. The lights are bright. Two legends are ready for the final moment. Who are you choosing?",
-    choices: [
-      { text: "Pick Ronaldo", next: "ronaldoSetup" },
-      { text: "Pick Messi", next: "messiSetup" }
-    ]
-  },
+  title: "Choose Your Legend",
+  image: "mr.webp",
+  text: "Select your player to begin the match.",
+  choices: [
+    {
+      text: "Cristiano Ronaldo",
+      next: "ronaldoSetup",
+      image: "ronaldo.jpeg",
+      country: "Portugal",
+      theme: "portugal-card"
+    },
+    {
+      text: "Lionel Messi",
+      next: "messiSetup",
+      image: "messi-goat.jpg",
+      country: "Argentina",
+      theme: "argentina-card"
+    }
+  ]
+},
 
 ronaldoSetup: {
   title: "Ronaldo Steps Up",
