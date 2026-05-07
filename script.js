@@ -1,6 +1,7 @@
 const title = document.querySelector(".title");
 const sceneImage = document.querySelector("#sceneImage");
 const storyText = document.querySelector("#storyText");
+const sceneLabel = document.querySelector("#sceneLabel");
 const choices = document.querySelector("#choices");
 
 const celebrationSound = document.querySelector("#celebrationSound");
@@ -15,6 +16,7 @@ let isTyping = false;
 
 const scenes = {
   start: {
+    label: "Character Select",
     title: "Choose Your Legend",
     image: "mr.webp",
     text: "Select your player to begin the match.",
@@ -37,6 +39,7 @@ const scenes = {
   },
 
   ronaldoIntro: {
+    label: "Player Intro",
     title: "You Chose Ronaldo",
     image: "stance.jpg",
     text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
@@ -46,6 +49,7 @@ const scenes = {
   },
 
   messiIntro: {
+    label: "Player Intro",
     title: "You Chose Messi",
     image: "messipen.jpg",
     text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
@@ -55,6 +59,7 @@ const scenes = {
   },
 
   ronaldoSetup: {
+    label: "Penalty Moment",
     title: "Ronaldo Steps Up",
     image: "stance.jpg",
     text: "Ronaldo places the ball down. The keeper is talking trash. The crowd is loud. What should Ronaldo do?",
@@ -65,6 +70,7 @@ const scenes = {
   },
 
   messiSetup: {
+    label: "Penalty Moment",
     title: "Messi Steps Up",
     image: "messipen.jpg",
     text: "Messi walks up slowly. The keeper is trying to guess the corner. What should Messi do?",
@@ -75,6 +81,7 @@ const scenes = {
   },
 
   ronaldoPower: {
+    label: "Goal Moment",
     title: "GOALLL!",
     image: "cele7.jpg",
     text: "Ronaldo smashes it into the top corner. The keeper does not even move. The stadium goes crazy.",
@@ -86,6 +93,7 @@ const scenes = {
   },
 
   ronaldoCalm: {
+    label: "Goal Moment",
     title: "Cold Finish",
     image: "goal.jpg",
     text: "Ronaldo waits for the keeper to move, then calmly sends it the other way. That was pure confidence.",
@@ -97,6 +105,7 @@ const scenes = {
   },
 
   messiCorner: {
+    label: "Goal Moment",
     title: "GOALLL!",
     image: "messi-score.jpg",
     text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it. The stadium erupts as Messi scores.",
@@ -108,6 +117,7 @@ const scenes = {
   },
 
   messiChip: {
+    label: "Missed Chance",
     title: "Risky Choice",
     image: "miss.webp",
     text: "Messi tries to chip the keeper, but the keeper stays still and catches it. The crowd is shocked.",
@@ -118,6 +128,7 @@ const scenes = {
   },
 
   goatEnding: {
+    label: "Final Verdict",
     title: "Ronaldo Is The GOAT",
     image: "cele7.jpg",
     text: "Ronaldo delivers under pressure, scores when it matters most, and proves why many people call him the greatest of all time.",
@@ -129,6 +140,7 @@ const scenes = {
   },
 
   messiGoatEnding: {
+    label: "Final Verdict",
     title: "Messi Is The GOAT",
     image: "messi-goat.jpg",
     text: "Messi delivers in the biggest moment and proves why so many people see him as the greatest of all time.",
@@ -140,6 +152,7 @@ const scenes = {
   },
 
   badEnding: {
+    label: "Missed Chance",
     title: "Pressure Got Too Real",
     image: "miss.webp",
     text: "The moment was too big. The internet is already making edits. Sometimes the GOAT debate gets painful.",
@@ -217,6 +230,7 @@ function showScene(sceneName) {
   }
 
   title.textContent = scene.title;
+  sceneLabel.textContent = scene.label;
 
   choices.classList.add("hidden-choices");
 
