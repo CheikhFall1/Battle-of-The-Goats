@@ -5,6 +5,9 @@ const sceneLabel = document.querySelector("#sceneLabel");
 const choices = document.querySelector("#choices");
 
 const celebrationSound = document.querySelector("#celebrationSound");
+const crowdSound = document.querySelector("#crowdSound");
+const clickSound = document.querySelector("#clickSound");
+
 const card = document.querySelector(".card");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
@@ -24,14 +27,14 @@ const scenes = {
       {
         text: "Cristiano Ronaldo",
         next: "ronaldoIntro",
-        image: "player.jpg",
+        image: "stance.jpg",
         country: "Portugal",
         theme: "portugal-card"
       },
       {
         text: "Lionel Messi",
         next: "messiIntro",
-        image: "messi.jpg",
+        image: "messi-goat.jpg",
         country: "Argentina",
         theme: "argentina-card"
       }
@@ -42,7 +45,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Ronaldo",
     image: "stance.jpg",
-    text: "The Real Madrid side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
+    text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
     choices: [
       { text: "Continue", next: "ronaldoSetup" }
     ]
@@ -51,8 +54,8 @@ const scenes = {
   messiIntro: {
     label: "Player Intro",
     title: "You Chose Messi",
-    image: "messipen.jpg",
-    text: "The Barcelona side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
+    image: "messi-goat.jpg",
+    text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
     choices: [
       { text: "Continue", next: "messiSetup" }
     ]
@@ -162,6 +165,12 @@ const scenes = {
   }
 };
 
+function playClickSound() {
+  clickSound.currentTime = 0;
+  clickSound.volume = 0.5;
+  clickSound.play().catch(() => {});
+}
+
 function typeText(text, finishedTyping) {
   clearInterval(typingTimer);
   storyText.textContent = "";
@@ -246,6 +255,7 @@ function showScene(sceneName) {
 
   if (scene.sound) {
     celebrationSound.currentTime = 0;
+    celebrationSound.volume = 0.8;
     celebrationSound.play().catch(() => {});
 
     card.classList.add("goal-flash");
@@ -273,6 +283,7 @@ function showScene(sceneName) {
 
     button.onclick = function (event) {
       event.stopPropagation();
+      playClickSound();
       transitionToScene(choice.next);
     };
 
@@ -293,6 +304,7 @@ function showScene(sceneName) {
 
     backButton.onclick = function (event) {
       event.stopPropagation();
+      playClickSound();
       transitionToScene("start");
     };
 
@@ -305,6 +317,11 @@ card.onclick = function () {
 };
 
 startButton.onclick = function () {
+  playClickSound();
+
+  crowdSound.volume = 0.25;
+  crowdSound.play().catch(() => {});
+
   startScreen.style.display = "none";
   gameContainer.style.display = "flex";
   showScene("start");
