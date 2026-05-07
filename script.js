@@ -14,8 +14,11 @@ const startButton = document.querySelector(".start-button");
 const gameContainer = document.querySelector(".game");
 
 let typingTimer;
+let crowdTimer;
+let clickTimer;
 let currentText = "";
 let isTyping = false;
+let clickLocked = false;
 
 const scenes = {
   start: {
@@ -27,14 +30,14 @@ const scenes = {
       {
         text: "Cristiano Ronaldo",
         next: "ronaldoIntro",
-        image: "stance.jpg",
+        image: "player.jpg",
         country: "Portugal",
         theme: "portugal-card"
       },
       {
         text: "Lionel Messi",
         next: "messiIntro",
-        image: "messi-goat.jpg",
+        image: "messi.jpg",
         country: "Argentina",
         theme: "argentina-card"
       }
@@ -45,7 +48,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Ronaldo",
     image: "stance.jpg",
-    text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
+    text: "The Real Madrid side erupts!! Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
     choices: [
       { text: "Continue", next: "ronaldoSetup" }
     ]
@@ -54,8 +57,8 @@ const scenes = {
   messiIntro: {
     label: "Player Intro",
     title: "You Chose Messi",
-    image: "messi-goat.jpg",
-    text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
+    image: "messipen.jpg",
+    text: "The Argentina side goes crazy!! Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
     choices: [
       { text: "Continue", next: "messiSetup" }
     ]
@@ -166,15 +169,38 @@ const scenes = {
 };
 
 function playClickSound() {
+  if (clickLocked) {
+    return;
+  }
+
+  clickLocked = true;
+
   clickSound.pause();
   clickSound.currentTime = 0;
-  clickSound.volume = 0.35;
+  clickSound.volume = 0.25;
   clickSound.play().catch(() => {});
 
-  setTimeout(function () {
+  clearTimeout(clickTimer);
+
+  clickTimer = setTimeout(function () {
     clickSound.pause();
     clickSound.currentTime = 0;
-  }, 250);
+    clickLocked = false;
+  }, 120);
+}
+
+function playCrowdOnce() {
+  clearTimeout(crowdTimer);
+
+  crowdSound.pause();
+  crowdSound.currentTime = 0;
+  crowdSound.volume = 0.12;
+  crowdSound.play().catch(() => {});
+
+  crowdTimer = setTimeout(function () {
+    crowdSound.pause();
+    crowdSound.currentTime = 0;
+  }, 1800);
 }
 
 function typeText(text, finishedTyping) {
@@ -226,6 +252,10 @@ function transitionToScene(sceneName) {
 
 function showScene(sceneName) {
   const scene = scenes[sceneName];
+
+  if (!scene.sound) {
+    playCrowdOnce();
+  }
 
   if (sceneName === "start") {
     card.classList.add("flags-bg");
@@ -324,9 +354,6 @@ card.onclick = function () {
 
 startButton.onclick = function () {
   playClickSound();
-
-  crowdSound.volume = 0.12;
-  crowdSound.play().catch(() => {});
 
   startScreen.style.display = "none";
   gameContainer.style.display = "flex";
