@@ -70,7 +70,7 @@ const scenes = {
     text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it.",
     sound: true,
     choices: [
-      { text: "Final GOAT Verdict", next: "goatEnding"},
+      { text: "Final GOAT Verdict", next: "messiGoatEnding" },
       { text: "Play Again", next: "start", reset: true }
     ]
   },
@@ -86,7 +86,7 @@ const scenes = {
   },
 
   goatEnding: {
-    title: "Legend Status Unlocked",
+    title: "Ronaldo Is The GOAT",
     image: "cele7.jpg",
     text: "You made the right calls under pressure. Your player leaves the stadium with legacy points and bragging rights.",
     sound: true,
@@ -94,6 +94,16 @@ const scenes = {
       { text: "Restart Game", next: "start", reset: true }
     ]
   },
+
+  messiGoatEnding: {
+  title: "Messi Is The GOAT",
+  image: "laliga.webp",
+  text: "Messi keeps his cool, places the ball perfectly, and proves why so many people call him the greatest of all time.",
+  sound: true,
+  choices: [
+    { text: "Restart Game", next: "start", reset: true }
+  ]
+},
 
   badEnding: {
     title: "Pressure Got Too Real",
