@@ -2,16 +2,14 @@ const title = document.querySelector(".title");
 const sceneImage = document.querySelector("#sceneImage");
 const storyText = document.querySelector("#storyText");
 const choices = document.querySelector("#choices");
-const scoreText = document.querySelector("#scoreText");
-const roundText = document.querySelector("#roundText");
+
 const celebrationSound = document.querySelector("#celebrationSound");
 const card = document.querySelector(".card");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const gameContainer = document.querySelector(".game");
 
-let score = 0;
-let round = 1;
+
 
 const scenes = {
   start: {
@@ -19,8 +17,8 @@ const scenes = {
     image: "mr.webp",
     text: "The stadium is packed. The lights are bright. Two legends are ready for the final moment. Who are you choosing?",
     choices: [
-      { text: "Pick Ronaldo", next: "ronaldoSetup", points: 1 },
-      { text: "Pick Messi", next: "messiSetup", points: 1 }
+      { text: "Pick Ronaldo", next: "ronaldoSetup" },
+      { text: "Pick Messi", next: "messiSetup" }
     ]
   },
 
@@ -29,8 +27,8 @@ const scenes = {
     image: "stance.jpg",
     text: "Ronaldo places the ball down. The keeper is talking trash. The crowd is loud. What should Ronaldo do?",
     choices: [
-      { text: "Power Shot", next: "ronaldoPower", points: 2 },
-      { text: "Calm Penalty", next: "ronaldoCalm", points: 1 }
+      { text: "Power Shot", next: "ronaldoPower" },
+      { text: "Calm Penalty", next: "ronaldoCalm" }
     ]
   },
 
@@ -39,8 +37,8 @@ const scenes = {
     image: "messipen.jpg",
     text: "Messi walks up slowly. The keeper is trying to guess the corner. What should Messi do?",
     choices: [
-      { text: "Place It Bottom Corner", next: "messiCorner", points: 2 },
-      { text: "Chip the Keeper", next: "messiChip", points: 1 }
+      { text: "Place It Bottom Corner", next: "messiCorner" },
+      { text: "Chip the Keeper", next: "messiChip" }
     ]
   },
 
@@ -50,7 +48,7 @@ const scenes = {
     text: "Ronaldo smashes it into the top corner. The keeper does not even move. The stadium goes crazy.",
     sound: true,
     choices: [
-      { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
+      { text: "Final GOAT Verdict", next: "goatEnding"},
       { text: "Play Again", next: "start", reset: true }
     ]
   },
@@ -61,7 +59,7 @@ const scenes = {
     text: "Ronaldo waits for the keeper to move, then calmly sends it the other way. That was pure confidence.",
     sound: true,
     choices: [
-      { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
+      { text: "Final GOAT Verdict", next: "goatEnding"},
       { text: "Play Again", next: "start", reset: true }
     ]
   },
@@ -72,7 +70,7 @@ const scenes = {
     text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it.",
     sound: true,
     choices: [
-      { text: "Final GOAT Verdict", next: "goatEnding", points: 2 },
+      { text: "Final GOAT Verdict", next: "goatEnding"},
       { text: "Play Again", next: "start", reset: true }
     ]
   },
@@ -82,7 +80,7 @@ const scenes = {
     image: "miss.webp",
     text: "Messi tries to chip the keeper, but the keeper stays still and catches it. The crowd is shocked.",
     choices: [
-      { text: "Final GOAT Verdict", next: "badEnding", points: 0 },
+      { text: "Final GOAT Verdict", next: "badEnding"},
       { text: "Try Again", next: "start", reset: true }
     ]
   },
@@ -118,8 +116,7 @@ function showScene(sceneName) {
   title.textContent = scene.title;
   sceneImage.src = scene.image;
   storyText.textContent = scene.text;
-  scoreText.textContent = `Legacy Points: ${score}`;
-  roundText.textContent = `Round ${round}`;
+ 
 
   choices.innerHTML = "";
 
@@ -133,15 +130,7 @@ function showScene(sceneName) {
     button.textContent = choice.text;
 
     button.onclick = function () {
-      if (choice.reset) {
-        score = 0;
-        round = 1;
-      } else {
-        score += choice.points || 0;
-        round += 1;
-      }
-
-      showScene(choice.next);
+     showScene(choice.next);
     };
 
     choices.appendChild(button);
