@@ -167,7 +167,7 @@ function showScene(sceneName) {
     celebrationSound.play().catch(() => {});
   }
 
-  scene.choices.forEach(choice => {
+  scene.choices.forEach((choice, index) => {
     const button = document.createElement("button");
 
     if (sceneName === "start") {
@@ -188,9 +188,15 @@ function showScene(sceneName) {
     };
 
     choices.appendChild(button);
+
+    if (sceneName === "start" && index === 0) {
+      const vsBadge = document.createElement("div");
+      vsBadge.classList.add("vs-badge");
+      vsBadge.textContent = "VS";
+      choices.appendChild(vsBadge);
+    }
   });
 }
-
 startButton.onclick = function () {
   startScreen.style.display = "none";
   gameContainer.style.display = "flex";
