@@ -98,15 +98,6 @@ body {
   font-size: clamp(32px, 6vw, 58px);
 }
 
-.score-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 0 auto 18px;
-  max-width: 600px;
-  font-weight: bold;
-  opacity: 0.92;
-}
 
 #sceneImage {
   width: 100%;
@@ -157,10 +148,7 @@ button:active {
     padding: 20px;
   }
 
-  .score-row {
-    flex-direction: column;
-  }
-
+  
   button {
     width: 100%;
   }
