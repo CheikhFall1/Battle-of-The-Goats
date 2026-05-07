@@ -128,16 +128,23 @@ messiGoatEnding: {
 
 function showScene(sceneName) {
   const scene = scenes[sceneName];
-    if (sceneName === "start") {
+
+  if (sceneName === "start") {
     card.classList.add("flags-bg");
+    sceneImage.style.display = "none";
+    choices.classList.add("choice-cards");
   } else {
     card.classList.remove("flags-bg");
+    sceneImage.style.display = "block";
+    choices.classList.remove("choice-cards");
   }
 
   title.textContent = scene.title;
-  sceneImage.src = scene.image;
   storyText.textContent = scene.text;
- 
+
+  if (sceneName !== "start") {
+    sceneImage.src = scene.image;
+  }
 
   choices.innerHTML = "";
 
@@ -148,18 +155,24 @@ function showScene(sceneName) {
 
   scene.choices.forEach(choice => {
     const button = document.createElement("button");
-    button.textContent = choice.text;
+
+    if (sceneName === "start") {
+      button.classList.add("player-card", choice.theme);
+      button.innerHTML = `
+        <img src="${choice.image}" alt="${choice.text}">
+        <div class="player-card-content">
+          <h2>${choice.text}</h2>
+          <p>${choice.country}</p>
+        </div>
+      `;
+    } else {
+      button.textContent = choice.text;
+    }
 
     button.onclick = function () {
-     showScene(choice.next);
+      showScene(choice.next);
     };
 
     choices.appendChild(button);
   });
 }
-
-startButton.onclick = function () {
-  startScreen.style.display = "none";
-  gameContainer.style.display = "block";
-  showScene("start");
-};
