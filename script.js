@@ -9,40 +9,39 @@ const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const gameContainer = document.querySelector(".game");
 
-
-
 const scenes = {
   start: {
-  title: "Choose Your Legend",
-  image: "mr.webp",
-  text: "Select your player to begin the match.",
-  choices: [
-    {
-      text: "Cristiano Ronaldo",
-      next: "ronaldoSetup",
-      image: "stance.jpg",
-      country: "Portugal",
-      theme: "portugal-card"
-    },
-    {
-      text: "Lionel Messi",
-      next: "messiSetup",
-      image: "messi-goat.jpg",
-      country: "Argentina",
-      theme: "argentina-card"
-    }
-  ]
-},
+    title: "Choose Your Legend",
+    image: "mr.webp",
+    text: "Select your player to begin the match.",
+    choices: [
+      {
+        text: "Cristiano Ronaldo",
+        next: "ronaldoSetup",
+        image: "stance.jpg",
+        country: "Portugal",
+        theme: "portugal-card"
+      },
+      {
+        text: "Lionel Messi",
+        next: "messiSetup",
+        image: "messi-goat.jpg",
+        country: "Argentina",
+        theme: "argentina-card"
+      }
+    ]
+  },
 
-ronaldoSetup: {
-  title: "Ronaldo Steps Up",
-  image: "stance.jpg",
-  text: "Ronaldo places the ball down. The keeper is talking trash. The crowd is loud. What should Ronaldo do?",
-  choices: [
-    { text: "Power Shot", next: "ronaldoPower" },
-    { text: "Calm Penalty", next: "ronaldoCalm" }
-  ]
-},
+  ronaldoSetup: {
+    title: "Ronaldo Steps Up",
+    image: "stance.jpg",
+    text: "Ronaldo places the ball down. The keeper is talking trash. The crowd is loud. What should Ronaldo do?",
+    choices: [
+      { text: "Power Shot", next: "ronaldoPower" },
+      { text: "Calm Penalty", next: "ronaldoCalm" }
+    ]
+  },
+
   messiSetup: {
     title: "Messi Steps Up",
     image: "messipen.jpg",
@@ -59,7 +58,7 @@ ronaldoSetup: {
     text: "Ronaldo smashes it into the top corner. The keeper does not even move. The stadium goes crazy.",
     sound: true,
     choices: [
-      { text: "Final GOAT Verdict", next: "goatEnding"},
+      { text: "Final GOAT Verdict", next: "goatEnding" },
       { text: "Play Again", next: "start", reset: true }
     ]
   },
@@ -70,28 +69,28 @@ ronaldoSetup: {
     text: "Ronaldo waits for the keeper to move, then calmly sends it the other way. That was pure confidence.",
     sound: true,
     choices: [
-      { text: "Final GOAT Verdict", next: "goatEnding"},
+      { text: "Final GOAT Verdict", next: "goatEnding" },
       { text: "Play Again", next: "start", reset: true }
     ]
   },
 
- messiCorner: {
-  title: "GOALLL!",
-  image: "messi-score.jpg",
-  text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it. The stadium erupts as Messi scores.",
-  sound: true,
-  choices: [
-    { text: "Final GOAT Verdict", next: "messiGoatEnding" },
-    { text: "Play Again", next: "start", reset: true }
-  ]
-},
+  messiCorner: {
+    title: "GOALLL!",
+    image: "messi-score.jpg",
+    text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it. The stadium erupts as Messi scores.",
+    sound: true,
+    choices: [
+      { text: "Final GOAT Verdict", next: "messiGoatEnding" },
+      { text: "Play Again", next: "start", reset: true }
+    ]
+  },
 
   messiChip: {
     title: "Risky Choice",
     image: "miss.webp",
     text: "Messi tries to chip the keeper, but the keeper stays still and catches it. The crowd is shocked.",
     choices: [
-      { text: "Final GOAT Verdict", next: "badEnding"},
+      { text: "Final GOAT Verdict", next: "badEnding" },
       { text: "Try Again", next: "start", reset: true }
     ]
   },
@@ -106,15 +105,15 @@ ronaldoSetup: {
     ]
   },
 
-messiGoatEnding: {
-  title: "Messi Is The GOAT",
-  image: "messi-goat.jpg",
-  text: "Messi delivers in the biggest moment and proves why so many people see him as the greatest of all time.",
-  sound: true,
-  choices: [
-    { text: "Restart Game", next: "start", reset: true }
-  ]
-},
+  messiGoatEnding: {
+    title: "Messi Is The GOAT",
+    image: "messi-goat.jpg",
+    text: "Messi delivers in the biggest moment and proves why so many people see him as the greatest of all time.",
+    sound: true,
+    choices: [
+      { text: "Restart Game", next: "start", reset: true }
+    ]
+  },
 
   badEnding: {
     title: "Pressure Got Too Real",
@@ -176,3 +175,9 @@ function showScene(sceneName) {
     choices.appendChild(button);
   });
 }
+
+startButton.onclick = function () {
+  startScreen.style.display = "none";
+  gameContainer.style.display = "flex";
+  showScene("start");
+};
