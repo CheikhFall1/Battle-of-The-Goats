@@ -20,14 +20,14 @@ const scenes = {
       {
         text: "Cristiano Ronaldo",
         next: "ronaldoSetup",
-        image: "player.jpg",
+        image: "stance.jpg",
         country: "Portugal",
         theme: "portugal-card"
       },
       {
         text: "Lionel Messi",
         next: "messiSetup",
-        image: "messi.jpg",
+        image: "messi-goat.jpg",
         country: "Argentina",
         theme: "argentina-card"
       }
@@ -127,7 +127,7 @@ const scenes = {
   }
 };
 
-function typeText(text) {
+function typeText(text, finishedTyping) {
   clearInterval(typingTimer);
   storyText.textContent = "";
 
@@ -139,6 +139,10 @@ function typeText(text) {
 
     if (index >= text.length) {
       clearInterval(typingTimer);
+
+      if (finishedTyping) {
+        finishedTyping();
+      }
     }
   }, 22);
 }
@@ -172,7 +176,12 @@ function showScene(sceneName) {
   }
 
   title.textContent = scene.title;
-  typeText(scene.text);
+
+  choices.classList.add("hidden-choices");
+
+  typeText(scene.text, function () {
+    choices.classList.remove("hidden-choices");
+  });
 
   if (sceneName !== "start") {
     sceneImage.src = scene.image;
