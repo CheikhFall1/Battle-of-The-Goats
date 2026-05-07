@@ -6,6 +6,10 @@ const scoreText = document.querySelector("#scoreText");
 const roundText = document.querySelector("#roundText");
 const celebrationSound = document.querySelector("#celebrationSound");
 
+const startScreen = document.querySelector(".start-screen");
+const startButton = document.querySelector(".start-button");
+const gameContainer = document.querySelector(".game");
+
 let score = 0;
 let round = 1;
 
@@ -139,4 +143,8 @@ function showScene(sceneName) {
   });
 }
 
-showScene("start");
+startButton.onclick = function () {
+  startScreen.style.display = "none";
+  gameContainer.style.display = "block";
+  showScene("start");
+};
