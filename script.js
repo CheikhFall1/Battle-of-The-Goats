@@ -10,6 +10,8 @@ const startButton = document.querySelector(".start-button");
 const gameContainer = document.querySelector(".game");
 
 let typingTimer;
+let currentText = "";
+let isTyping = false;
 
 const scenes = {
   start: {
@@ -130,6 +132,8 @@ const scenes = {
 function typeText(text, finishedTyping) {
   clearInterval(typingTimer);
   storyText.textContent = "";
+  currentText = text;
+  isTyping = true;
 
   let index = 0;
 
@@ -139,12 +143,22 @@ function typeText(text, finishedTyping) {
 
     if (index >= text.length) {
       clearInterval(typingTimer);
+      isTyping = false;
 
       if (finishedTyping) {
         finishedTyping();
       }
     }
   }, 22);
+}
+
+function revealTextNow() {
+  if (isTyping) {
+    clearInterval(typingTimer);
+    storyText.textContent = currentText;
+    isTyping = false;
+    choices.classList.remove("hidden-choices");
+  }
 }
 
 function transitionToScene(sceneName) {
@@ -210,7 +224,8 @@ function showScene(sceneName) {
       button.textContent = choice.text;
     }
 
-    button.onclick = function () {
+    button.onclick = function (event) {
+      event.stopPropagation();
       transitionToScene(choice.next);
     };
 
@@ -229,13 +244,18 @@ function showScene(sceneName) {
     backButton.textContent = "Back to Character Select";
     backButton.classList.add("back-button");
 
-    backButton.onclick = function () {
+    backButton.onclick = function (event) {
+      event.stopPropagation();
       transitionToScene("start");
     };
 
     choices.appendChild(backButton);
   }
 }
+
+card.onclick = function () {
+  revealTextNow();
+};
 
 startButton.onclick = function () {
   startScreen.style.display = "none";
