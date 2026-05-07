@@ -124,7 +124,19 @@ const scenes = {
     ]
   }
 };
+function transitionToScene(sceneName) {
+  card.classList.add("fade-out");
 
+  setTimeout(function () {
+    showScene(sceneName);
+    card.classList.remove("fade-out");
+    card.classList.add("fade-in");
+
+    setTimeout(function () {
+      card.classList.remove("fade-in");
+    }, 250);
+  }, 250);
+}
 function showScene(sceneName) {
   const scene = scenes[sceneName];
 
@@ -169,11 +181,8 @@ function showScene(sceneName) {
     }
 
     button.onclick = function () {
-      showScene(choice.next);
-    };
-
-    choices.appendChild(button);
-  });
+  transitionToScene(choice.next);
+};
 }
 
 startButton.onclick = function () {
