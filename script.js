@@ -5,7 +5,7 @@ const choices = document.querySelector("#choices");
 const scoreText = document.querySelector("#scoreText");
 const roundText = document.querySelector("#roundText");
 const celebrationSound = document.querySelector("#celebrationSound");
-
+const card = document.querySelector(".card");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const gameContainer = document.querySelector(".game");
