@@ -20,14 +20,14 @@ const scenes = {
       {
         text: "Cristiano Ronaldo",
         next: "ronaldoSetup",
-        image: "stance.jpg",
+        image: "player.jpg",
         country: "Portugal",
         theme: "portugal-card"
       },
       {
         text: "Lionel Messi",
         next: "messiSetup",
-        image: "messi-goat.jpg",
+        image: "messi.jpg",
         country: "Argentina",
         theme: "argentina-card"
       }
