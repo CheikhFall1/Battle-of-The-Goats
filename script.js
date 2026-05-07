@@ -8,7 +8,8 @@ const card = document.querySelector(".card");
 const startScreen = document.querySelector(".start-screen");
 const startButton = document.querySelector(".start-button");
 const gameContainer = document.querySelector(".game");
-let typingTimer; 
+
+let typingTimer;
 
 const scenes = {
   start: {
@@ -125,6 +126,7 @@ const scenes = {
     ]
   }
 };
+
 function typeText(text) {
   clearInterval(typingTimer);
   storyText.textContent = "";
@@ -138,8 +140,9 @@ function typeText(text) {
     if (index >= text.length) {
       clearInterval(typingTimer);
     }
-  }, 25);
+  }, 22);
 }
+
 function transitionToScene(sceneName) {
   card.classList.add("fade-out");
 
@@ -170,7 +173,6 @@ function showScene(sceneName) {
 
   title.textContent = scene.title;
   typeText(scene.text);
-  }, 20);
 
   if (sceneName !== "start") {
     sceneImage.src = scene.image;
@@ -225,6 +227,7 @@ function showScene(sceneName) {
     choices.appendChild(backButton);
   }
 }
+
 startButton.onclick = function () {
   startScreen.style.display = "none";
   gameContainer.style.display = "flex";
