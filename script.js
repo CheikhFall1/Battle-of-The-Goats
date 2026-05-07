@@ -109,6 +109,11 @@ const scenes = {
 
 function showScene(sceneName) {
   const scene = scenes[sceneName];
+    if (sceneName === "start") {
+    card.classList.add("flags-bg");
+  } else {
+    card.classList.remove("flags-bg");
+  }
 
   title.textContent = scene.title;
   sceneImage.src = scene.image;
