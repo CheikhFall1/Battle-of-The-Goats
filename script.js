@@ -206,6 +206,12 @@ function showScene(sceneName) {
   if (scene.sound) {
     celebrationSound.currentTime = 0;
     celebrationSound.play().catch(() => {});
+
+    card.classList.add("goal-flash");
+
+    setTimeout(function () {
+      card.classList.remove("goal-flash");
+    }, 800);
   }
 
   scene.choices.forEach((choice, index) => {
