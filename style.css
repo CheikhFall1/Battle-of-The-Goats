@@ -371,3 +371,15 @@ button:active {
   font-size: 22px;
   font-weight: 600;
 }
+.scene-label {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 215, 0, 0.18);
+  color: #ffd700;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
