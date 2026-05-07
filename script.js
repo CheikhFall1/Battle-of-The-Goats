@@ -166,9 +166,15 @@ const scenes = {
 };
 
 function playClickSound() {
+  clickSound.pause();
   clickSound.currentTime = 0;
-  clickSound.volume = 0.5;
+  clickSound.volume = 0.35;
   clickSound.play().catch(() => {});
+
+  setTimeout(function () {
+    clickSound.pause();
+    clickSound.currentTime = 0;
+  }, 250);
 }
 
 function typeText(text, finishedTyping) {
@@ -319,7 +325,7 @@ card.onclick = function () {
 startButton.onclick = function () {
   playClickSound();
 
-  crowdSound.volume = 0.25;
+  crowdSound.volume = 0.12;
   crowdSound.play().catch(() => {});
 
   startScreen.style.display = "none";
