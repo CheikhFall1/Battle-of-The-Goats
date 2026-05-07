@@ -59,7 +59,7 @@ const scenes = {
     sound: true,
     choices: [
       { text: "Final GOAT Verdict", next: "goatEnding" },
-      { text: "Play Again", next: "start", reset: true }
+      { text: "Play Again", next: "start" }
     ]
   },
 
@@ -70,7 +70,7 @@ const scenes = {
     sound: true,
     choices: [
       { text: "Final GOAT Verdict", next: "goatEnding" },
-      { text: "Play Again", next: "start", reset: true }
+      { text: "Play Again", next: "start" }
     ]
   },
 
@@ -81,7 +81,7 @@ const scenes = {
     sound: true,
     choices: [
       { text: "Final GOAT Verdict", next: "messiGoatEnding" },
-      { text: "Play Again", next: "start", reset: true }
+      { text: "Play Again", next: "start" }
     ]
   },
 
@@ -91,7 +91,7 @@ const scenes = {
     text: "Messi tries to chip the keeper, but the keeper stays still and catches it. The crowd is shocked.",
     choices: [
       { text: "Final GOAT Verdict", next: "badEnding" },
-      { text: "Try Again", next: "start", reset: true }
+      { text: "Try Again", next: "start" }
     ]
   },
 
@@ -101,7 +101,7 @@ const scenes = {
     text: "Ronaldo delivers under pressure, scores when it matters most, and proves why many people call him the greatest of all time.",
     sound: true,
     choices: [
-      { text: "Restart Game", next: "start", reset: true }
+      { text: "Restart Game", next: "start" }
     ]
   },
 
@@ -111,7 +111,7 @@ const scenes = {
     text: "Messi delivers in the biggest moment and proves why so many people see him as the greatest of all time.",
     sound: true,
     choices: [
-      { text: "Restart Game", next: "start", reset: true }
+      { text: "Restart Game", next: "start" }
     ]
   },
 
@@ -120,15 +120,17 @@ const scenes = {
     image: "miss.webp",
     text: "The moment was too big. The internet is already making edits. Sometimes the GOAT debate gets painful.",
     choices: [
-      { text: "Run It Back", next: "start", reset: true }
+      { text: "Run It Back", next: "start" }
     ]
   }
 };
+
 function transitionToScene(sceneName) {
   card.classList.add("fade-out");
 
   setTimeout(function () {
     showScene(sceneName);
+
     card.classList.remove("fade-out");
     card.classList.add("fade-in");
 
@@ -137,6 +139,7 @@ function transitionToScene(sceneName) {
     }, 250);
   }, 250);
 }
+
 function showScene(sceneName) {
   const scene = scenes[sceneName];
 
@@ -181,8 +184,11 @@ function showScene(sceneName) {
     }
 
     button.onclick = function () {
-  transitionToScene(choice.next);
-};
+      transitionToScene(choice.next);
+    };
+
+    choices.appendChild(button);
+  });
 }
 
 startButton.onclick = function () {
