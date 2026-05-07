@@ -47,7 +47,7 @@ const scenes = {
 
   messiIntro: {
     title: "You Chose Messi",
-    image: "messi-goat.jpg",
+    image: "messipen.jpg",
     text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
     choices: [
       { text: "Continue", next: "messiSetup" }
