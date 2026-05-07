@@ -42,7 +42,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Ronaldo",
     image: "stance.jpg",
-    text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
+    text: "The Real Madrid side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
     choices: [
       { text: "Continue", next: "ronaldoSetup" }
     ]
@@ -52,7 +52,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Messi",
     image: "messipen.jpg",
-    text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
+    text: "The Barcelona side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
     choices: [
       { text: "Continue", next: "messiSetup" }
     ]
