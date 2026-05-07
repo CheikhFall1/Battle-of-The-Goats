@@ -45,7 +45,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Ronaldo",
     image: "stance.jpg",
-    text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
+    text: "The Real Madrid side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
     choices: [
       { text: "Continue", next: "ronaldoSetup" }
     ]
@@ -55,7 +55,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Messi",
     image: "messipen.jpg",
-    text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
+    text: "The Barcelona side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
     choices: [
       { text: "Continue", next: "messiSetup" }
     ]
@@ -167,13 +167,13 @@ const scenes = {
 
 function playClickSound() {
   const click = new Audio("click.mp3");
-  click.volume = 0.25;
+  click.volume = 0.65;
   click.play().catch(() => {});
 
   setTimeout(function () {
     click.pause();
     click.currentTime = 0;
-  }, 300);
+  }, 450);
 }
 
 function playCrowdOnce() {
@@ -181,13 +181,13 @@ function playCrowdOnce() {
 
   crowdSound.pause();
   crowdSound.currentTime = 0;
-  crowdSound.volume = 0.18;
+  crowdSound.volume = 0.28;
   crowdSound.play().catch(() => {});
 
   crowdTimer = setTimeout(function () {
     crowdSound.pause();
     crowdSound.currentTime = 0;
-  }, 2500);
+  }, 6000);
 }
 
 function typeText(text, finishedTyping) {
