@@ -314,3 +314,12 @@ button:active {
     order: 3;
   }
 }
+.back-button {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
