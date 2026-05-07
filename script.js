@@ -24,7 +24,7 @@ const scenes = {
 
 ronaldoSetup: {
   title: "Ronaldo Steps Up",
-  image: "ronaldo.jpeg",
+  image: "stance.jpg",
   text: "Ronaldo places the ball down. The keeper is talking trash. The crowd is loud. What should Ronaldo do?",
   choices: [
     { text: "Power Shot", next: "ronaldoPower" },
