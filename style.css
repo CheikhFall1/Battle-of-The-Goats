@@ -74,7 +74,15 @@ body {
   text-align: center;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
 }
-
+.card.flags-bg {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("argentina.png"),
+    url("portugal.png");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: center, left center, right center;
+  background-size: cover, 50% 100%, 50% 100%;
+}
 .tag {
   display: inline-block;
   margin: 0 0 8px;
