@@ -196,6 +196,18 @@ function showScene(sceneName) {
       choices.appendChild(vsBadge);
     }
   });
+
+  if (sceneName !== "start") {
+    const backButton = document.createElement("button");
+    backButton.textContent = "Back to Character Select";
+    backButton.classList.add("back-button");
+
+    backButton.onclick = function () {
+      transitionToScene("start");
+    };
+
+    choices.appendChild(backButton);
+  }
 }
 startButton.onclick = function () {
   startScreen.style.display = "none";
