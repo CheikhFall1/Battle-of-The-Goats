@@ -6,7 +6,6 @@ const choices = document.querySelector("#choices");
 
 const celebrationSound = document.querySelector("#celebrationSound");
 const crowdSound = document.querySelector("#crowdSound");
-const clickSound = document.querySelector("#clickSound");
 
 const card = document.querySelector(".card");
 const startScreen = document.querySelector(".start-screen");
@@ -15,10 +14,8 @@ const gameContainer = document.querySelector(".game");
 
 let typingTimer;
 let crowdTimer;
-let clickTimer;
 let currentText = "";
 let isTyping = false;
-let clickLocked = false;
 
 const scenes = {
   start: {
@@ -48,7 +45,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Ronaldo",
     image: "stance.jpg",
-    text: "The Real Madrid side erupts!! Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
+    text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
     choices: [
       { text: "Continue", next: "ronaldoSetup" }
     ]
@@ -58,7 +55,7 @@ const scenes = {
     label: "Player Intro",
     title: "You Chose Messi",
     image: "messipen.jpg",
-    text: "The Argentina side goes crazy!! Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
+    text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
     choices: [
       { text: "Continue", next: "messiSetup" }
     ]
@@ -169,24 +166,14 @@ const scenes = {
 };
 
 function playClickSound() {
-  if (clickLocked) {
-    return;
-  }
+  const click = new Audio("click.mp3");
+  click.volume = 0.25;
+  click.play().catch(() => {});
 
-  clickLocked = true;
-
-  clickSound.pause();
-  clickSound.currentTime = 0;
-  clickSound.volume = 0.25;
-  clickSound.play().catch(() => {});
-
-  clearTimeout(clickTimer);
-
-  clickTimer = setTimeout(function () {
-    clickSound.pause();
-    clickSound.currentTime = 0;
-    clickLocked = false;
-  }, 120);
+  setTimeout(function () {
+    click.pause();
+    click.currentTime = 0;
+  }, 300);
 }
 
 function playCrowdOnce() {
@@ -194,13 +181,13 @@ function playCrowdOnce() {
 
   crowdSound.pause();
   crowdSound.currentTime = 0;
-  crowdSound.volume = 0.12;
+  crowdSound.volume = 0.18;
   crowdSound.play().catch(() => {});
 
   crowdTimer = setTimeout(function () {
     crowdSound.pause();
     crowdSound.currentTime = 0;
-  }, 1800);
+  }, 2500);
 }
 
 function typeText(text, finishedTyping) {
