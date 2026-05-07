@@ -21,18 +21,36 @@ const scenes = {
     choices: [
       {
         text: "Cristiano Ronaldo",
-        next: "ronaldoSetup",
+        next: "ronaldoIntro",
         image: "player.jpg",
         country: "Portugal",
         theme: "portugal-card"
       },
       {
         text: "Lionel Messi",
-        next: "messiSetup",
+        next: "messiIntro",
         image: "messi.jpg",
         country: "Argentina",
         theme: "argentina-card"
       }
+    ]
+  },
+
+  ronaldoIntro: {
+    title: "You Chose Ronaldo",
+    image: "stance.jpg",
+    text: "The Portugal side erupts. Ronaldo walks toward the penalty spot with confidence, locked in like the whole stadium belongs to him.",
+    choices: [
+      { text: "Continue", next: "ronaldoSetup" }
+    ]
+  },
+
+  messiIntro: {
+    title: "You Chose Messi",
+    image: "messi-goat.jpg",
+    text: "The Argentina side goes crazy. Messi stays calm, walking toward the ball like he has already seen the ending in his head.",
+    choices: [
+      { text: "Continue", next: "messiSetup" }
     ]
   },
 
