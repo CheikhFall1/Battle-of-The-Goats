@@ -332,3 +332,23 @@ button:active {
 .choices {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+.goal-flash {
+  animation: goalFlash 0.8s ease;
+}
+
+@keyframes goalFlash {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    transform: scale(1);
+  }
+
+  35% {
+    box-shadow: 0 0 45px rgba(255, 255, 255, 0.85);
+    transform: scale(1.03);
+  }
+
+  100% {
+    box-shadow: 0 22px 65px rgba(0, 0, 0, 0.48);
+    transform: scale(1);
+  }
+}
