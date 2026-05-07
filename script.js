@@ -20,7 +20,7 @@ const scenes = {
     {
       text: "Cristiano Ronaldo",
       next: "ronaldoSetup",
-      image: "ronaldo.jpeg",
+      image: "stance.jpg",
       country: "Portugal",
       theme: "portugal-card"
     },
