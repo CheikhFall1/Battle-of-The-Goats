@@ -122,6 +122,7 @@ const scenes = {
     image: "cele7.jpg",
     text: "Ronaldo delivers under pressure, scores when it matters most, and proves why many people call him the greatest of all time.",
     sound: true,
+    final: true,
     choices: [
       { text: "Restart Game", next: "start" }
     ]
@@ -132,6 +133,7 @@ const scenes = {
     image: "messi-goat.jpg",
     text: "Messi delivers in the biggest moment and proves why so many people see him as the greatest of all time.",
     sound: true,
+    final: true,
     choices: [
       { text: "Restart Game", next: "start" }
     ]
@@ -199,12 +201,19 @@ function showScene(sceneName) {
 
   if (sceneName === "start") {
     card.classList.add("flags-bg");
+    card.classList.remove("final-scene");
     sceneImage.style.display = "none";
     choices.classList.add("choice-cards");
   } else {
     card.classList.remove("flags-bg");
     sceneImage.style.display = "block";
     choices.classList.remove("choice-cards");
+
+    if (scene.final) {
+      card.classList.add("final-scene");
+    } else {
+      card.classList.remove("final-scene");
+    }
   }
 
   title.textContent = scene.title;
