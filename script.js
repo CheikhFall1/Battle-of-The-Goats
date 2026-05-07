@@ -64,16 +64,16 @@ const scenes = {
     ]
   },
 
-  messiCorner: {
-    title: "Perfect Placement",
-    image: "laliga.webp",
-    text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it.",
-    sound: true,
-    choices: [
-      { text: "Final GOAT Verdict", next: "messiGoatEnding" },
-      { text: "Play Again", next: "start", reset: true }
-    ]
-  },
+ messiCorner: {
+  title: "GOALLL!",
+  image: "messi-score.jpg",
+  text: "Messi places it perfectly in the bottom corner. The keeper guessed right but still could not reach it. The stadium erupts as Messi scores.",
+  sound: true,
+  choices: [
+    { text: "Final GOAT Verdict", next: "messiGoatEnding" },
+    { text: "Play Again", next: "start", reset: true }
+  ]
+},
 
   messiChip: {
     title: "Risky Choice",
@@ -88,17 +88,17 @@ const scenes = {
   goatEnding: {
     title: "Ronaldo Is The GOAT",
     image: "cele7.jpg",
-    text: "You made the right calls under pressure. Your player leaves the stadium with legacy points and bragging rights.",
+    text: "Ronaldo delivers under pressure, scores when it matters most, and proves why many people call him the greatest of all time.",
     sound: true,
     choices: [
       { text: "Restart Game", next: "start", reset: true }
     ]
   },
 
-  messiGoatEnding: {
+messiGoatEnding: {
   title: "Messi Is The GOAT",
-  image: "laliga.webp",
-  text: "Messi keeps his cool, places the ball perfectly, and proves why so many people call him the greatest of all time.",
+  image: "messi-goat.jpg",
+  text: "Messi delivers in the biggest moment and proves why so many people see him as the greatest of all time.",
   sound: true,
   choices: [
     { text: "Restart Game", next: "start", reset: true }
